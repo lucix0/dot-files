@@ -1,0 +1,30 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.bracketPairColorization.enabled": false,
+    "editor.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "files.autoSave": "afterDelay",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.gpuAcceleration": "on",
+    "terminal.integrated.profiles.windows": {
+        "Developer PowerShell": {
+            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+            "icon": "terminal-powershell",
+            "args": [
+                "-noexit",
+                "-Command",
+                "Import-Module 'C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/Tools/Microsoft.VisualStudio.DevShell.dll'; Enter-VsDevShell -VsInstallPath 'C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools' -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64';"
+            ] 
+        }
+    },
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "extensions.ignoreRecommendations": true,
+    "git.autofetch": true,
+    "C_Cpp.default.cppStandard": "c++20"
+}
