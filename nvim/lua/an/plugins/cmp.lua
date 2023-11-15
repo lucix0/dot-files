@@ -12,8 +12,21 @@ return {
         "hrsh7th/vim-vsnip",
     },
     config = function()
-        local cmp = require("cmp")
+        require("lspconfig").rust_analyzer.setup {
+            settings = {
+                ['rust-analyzer'] = {
+                    check = {
+                        command = "clippy";
+                    },
+                    diagnostics = {
+                        enable = true;
+                    }
+                }
+            }
+        }
 
+        local cmp = require("cmp")
+        
         cmp.setup({
             snippet = {
                 -- REQUIRED - you must specify a snippet engine
