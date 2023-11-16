@@ -61,8 +61,8 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
+    awful.layout.suit.floating,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
@@ -169,7 +169,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "Main", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -180,42 +180,52 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
-    }
+                           awful.button({ }, 5, function () awful.layout.inc(-1) end))) 
  
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     local battery_widget = require("widgets.battery")
     local brightness_widget = require("widgets.brightness.brightness-widget")
+    local fancy_taglist = require("widgets.fancy_taglist")
+    
+    -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist {
+        screen  = s,
+        filter  = awful.widget.tasklist.filter.currenttags,
+        buttons = tasklist_buttons
+    }
+
+    -- taglist
+    s.mytaglist = awful.widget.taglist {
+        screen = s,
+        filter = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons
+    }
+
+    s.fanctaglist = fancy_taglist.new({
+        screen = s,
+        taglist = { buttons = mytagbuttons },
+        tasklist = { buttons = mytasklistbuttons }
+    })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        { 
+            -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
+        s.mytasklist,
+        { 
+            -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             brightness_widget.widget,
             battery_widget(),
-            mykeyboardlayout,
             wibox.widget.systray(),
+            mykeyboardlayout,
             mytextclock,
             s.mylayoutbox,
         },
@@ -589,4 +599,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autostart applications
+awful.spawn.with_shell("xautolock -time 1 -locker i3lock &")
+awful.spawn.with_shell("volumeicon")
 awful.spawn.with_shell("picom")
