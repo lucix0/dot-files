@@ -186,8 +186,6 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
     local battery_widget = require("widgets.battery")
-    local brightness_widget = require("widgets.brightness.brightness-widget")
-    local fancy_taglist = require("widgets.fancy_taglist")
     
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
@@ -203,12 +201,6 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = taglist_buttons
     }
 
-    s.fanctaglist = fancy_taglist.new({
-        screen = s,
-        taglist = { buttons = mytagbuttons },
-        tasklist = { buttons = mytasklistbuttons }
-    })
-
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -222,7 +214,6 @@ awful.screen.connect_for_each_screen(function(s)
         { 
             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            brightness_widget.widget,
             battery_widget(),
             wibox.widget.systray(),
             mykeyboardlayout,
