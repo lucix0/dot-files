@@ -590,6 +590,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("xautolock -time 1 -locker i3lock &")
+awful.spawn.with_shell("xautolock -time 5 -locker lock &")
 awful.spawn.with_shell("volumeicon")
 awful.spawn.with_shell("picom")

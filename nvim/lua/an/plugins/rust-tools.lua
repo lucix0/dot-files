@@ -1,5 +1,6 @@
 return {
     "simrat39/rust-tools.nvim",
+    branch = 'master',
     config = function()
         local rt = require("rust-tools")
 

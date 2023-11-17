@@ -1,14 +1,14 @@
 return {
     'ms-jpq/coq_nvim',
+    branch = 'coq',
     dependencies = {
-        'ms-jpq/coq.artifacts',
-        'ms-jpq/coq.thirdparty',
-        'neovim/nvim-lspconfig'
+        { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
+        { 'ms-jpq/coq.thirdparty', branch = '3p' },
+        { 'neovim/nvim-lspconfig', branch = 'master' }
     },
     config = function ()
         local lsp = require "lspconfig"
-        local coq = require "coq"
-    
+
         lsp.pyright.setup{}
         lsp.lua_ls.setup{}
         lsp.clangd.setup{}

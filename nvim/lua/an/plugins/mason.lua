@@ -1,7 +1,8 @@
 return {
     "williamboman/mason.nvim",
+    branch = 'main',
     dependencies = {
-        "williamboman/mason-lspconfig.nvim",
+        { "williamboman/mason-lspconfig.nvim", branch = 'main' },
     },
     config = function()
         require("mason").setup()
