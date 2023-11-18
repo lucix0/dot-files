@@ -22,6 +22,11 @@ vim.cmd([[
     set ttyfast
 ]])
 
+-- Vim keymaps
+-- Tab switching
+vim.keymap.set('n', '<leader>,', ':tabprevious<CR>', { silent = true })
+vim.keymap.set('n', '<leader>.', ':tabnext<CR>',     { silent = true })
+
 -- Lazy Plugin Manager Bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
