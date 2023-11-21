@@ -278,7 +278,7 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioMicMute", function ()
         awful.util.spawn("pactl set-source-mute 0 toggle") end),
 
-    awful.key({ modkey, "'"   }, "l", function ()
+    awful.key({ modkey, "Shift", "Alt"   }, "l", function ()
         awful.util.spawn("lock") end),
 
     -- Layout manipulation

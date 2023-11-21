@@ -23,9 +23,13 @@ vim.cmd([[
 ]])
 
 -- Vim keymaps
--- Tab switching
-vim.keymap.set('n', '<leader>,', ':tabprevious<CR>', { silent = true })
-vim.keymap.set('n', '<leader>.', ':tabnext<CR>',     { silent = true })
+-- Buffers
+vim.keymap.set('n', '<leader>[',  ':bprevious<CR>', { silent = true })
+vim.keymap.set('n', '<leader>]',  ':bnext<CR>',     { silent = true })
+vim.keymap.set('n', '<leader>bd', ':bdelete<CR>',   { silent = true })
+
+-- Saving
+vim.keymap.set('n', '<leader>w', ':w<CR>',            { silent = true })
 
 -- Lazy Plugin Manager Bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
